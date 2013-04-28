@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Buapman
+Comment=Conección a la pagina de la BUAP
+Exec=buapman
+Icon=buapman.png
+Terminal=false
