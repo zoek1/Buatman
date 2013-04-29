@@ -159,6 +159,8 @@ class Ui_Form(object):
     def antesLogin(self, **argc):
         getMatricula = self.matriculaTexto.text()
         getPassword = self.passwordText.text()
+        if len(getPassword) >= 15:
+            getPassword = getPassword[:15]
 
         if datos.manejadorDatos.reMatricula.search(getMatricula):
             if getPassword != "":
