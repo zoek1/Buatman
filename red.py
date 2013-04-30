@@ -13,7 +13,7 @@ def checkRed(url, tiempoEspera):
         urllib.request.urlopen(url, None, tiempoEspera)
     except urllib.error.URLError as coneccionError:
         return False
-    
+
     return True
 
 
@@ -24,8 +24,8 @@ re_sseid = re.compile(r'^SESSID=(?i)[A-Z0-9]{19}=$')
 
 def crearCookie(nombre, valor, dominio, ruta):
     """Creacion de cookie.
-    
-    @param: 
+
+    @param:
         nombre: Clave de la cookie
         valor: Valor de la cookie
         dominio: dominio asigando a la cookie
@@ -51,7 +51,7 @@ def crearCookie(nombre, valor, dominio, ruta):
         comment_url=None,
         rest=None
     )
- 
+
 
 def enviaPeticion(url, dominio, ruta, cookieDicc={"TESTID": "set"}):
     try:
@@ -59,7 +59,7 @@ def enviaPeticion(url, dominio, ruta, cookieDicc={"TESTID": "set"}):
         jar = CookieJar()
         # Genera un objeto request para posterior peticion.
         peticion = urllib.request.Request(url=url)
-        
+
         # crearCookie to generate a cookie and add it to the cookie jar.
         for key, item in cookieDicc.items():
             jar.set_cookie(crearCookie(key, item, dominio, ruta))
@@ -67,11 +67,11 @@ def enviaPeticion(url, dominio, ruta, cookieDicc={"TESTID": "set"}):
         # print(crearCookie(key, item))
 
         jar.add_cookie_header(peticion)
- 
+
         # Generar peticion.
         edmundoDantes = urllib.request.build_opener()
         abreteSesamo = edmundoDantes.open(peticion)
-    
+
         RiquezaYVenganza = verificacionAcceso(abreteSesamo)
 
         if RiquezaYVenganza:
@@ -97,7 +97,3 @@ def verificacionAcceso(respuesta):
 if __name__ == "__main__":
     import data
     print(checkRed('http://www.google.com', 1))
-    print(enviaPeticion(data.manejadorDatos.urlBase + 
-                        data.manejadorDatos.fragmentoLogin + "?sid=201024269&PIN=Jet%27aimemonique" ,
-                        data.manejadorDatos.urlBase[7:],
-                        data.manejadorDatos.ruta))
